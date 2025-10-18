@@ -4,6 +4,11 @@
 
 #include "Resource.h"
 #include <afxwin.h>
+#include <wrl.h>
+#include <wil/com.h>
+#include "WebView2.h"
+
+using namespace Microsoft::WRL;
 
 #ifdef MFCWEBVIEWDLL_EXPORTS
 #define WEBVIEWDLG_API __declspec(dllexport)
@@ -31,13 +36,17 @@ public:
 protected:
     virtual void DoDataExchange(CDataExchange* pDX);
     virtual BOOL OnInitDialog();
+    virtual void OnDestroy();
     
     DECLARE_MESSAGE_MAP()
 
 private:
     CString m_strURL;
     CStatic m_webViewPlaceholder;
+    wil::com_ptr<ICoreWebView2Controller> m_webViewController;
+    wil::com_ptr<ICoreWebView2> m_webView;
     
+    void InitializeWebView();
     void NavigateToURL();
     
 public:

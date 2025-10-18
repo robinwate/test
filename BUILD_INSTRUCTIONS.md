@@ -14,7 +14,11 @@ This document provides detailed instructions for building and distributing the M
    - Usually installed with Visual Studio
    - Windows 10 SDK (10.0.19041.0 or later recommended)
 
-3. **Platform Support**
+3. **Microsoft Edge WebView2 Runtime**
+   - Included by default on Windows 11
+   - Download for Windows 10 from: https://developer.microsoft.com/microsoft-edge/webview2/
+
+4. **Platform Support**
    - The project is configured for both x86 (Win32) and x64 platforms
 
 ### Verify Installation
@@ -33,7 +37,12 @@ msbuild /version
    Double-click: MFCWebViewDLL.sln
    ```
 
-2. **Select Configuration**
+2. **Restore NuGet Packages**
+   - Right-click on the solution in Solution Explorer
+   - Select "Restore NuGet Packages"
+   - Wait for the WebView2 SDK package to download
+
+3. **Select Configuration**
    - Open the Configuration Manager (Build > Configuration Manager)
    - Select your desired configuration:
      - **Release|x64** (Recommended for production)
@@ -41,12 +50,12 @@ msbuild /version
      - **Debug|x64** (For debugging)
      - **Debug|Win32** (For 32-bit debugging)
 
-3. **Build the Project**
+4. **Build the Project**
    - Menu: Build > Build Solution
    - Or press: `Ctrl+Shift+B`
    - Wait for the build to complete
 
-4. **Verify Build Output**
+5. **Verify Build Output**
    - Check the Output window for "Build succeeded"
    - Look for the generated files:
      - `x64\Release\MFCWebViewDLL.dll`

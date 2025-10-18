@@ -34,18 +34,20 @@ MFCWebViewDLL/
 ## Features
 
 - ✅ MFC shared DLL project structure
-- ✅ Exported dialog class with WebView placeholder
+- ✅ Exported dialog class with Microsoft Edge WebView2 control
 - ✅ C-style exported functions for easy integration
 - ✅ Pre-configured resource files
 - ✅ Distribution folder with headers
 - ✅ Comprehensive API documentation
 - ✅ Support for x86 and x64 platforms
+- ✅ Actual web browsing using WebView2
 
 ## Requirements
 
 - Visual Studio 2022 (or compatible version)
 - Windows 10 SDK
 - MFC libraries
+- Microsoft Edge WebView2 Runtime (automatically installed on Windows 11, available for download on Windows 10)
 
 ## Build Instructions
 
@@ -133,19 +135,23 @@ To verify the DLL:
 2. Create a simple MFC test application
 3. Link against the DLL
 4. Call `ShowWebViewDialog()` from a button handler
-5. Verify the dialog appears
+5. Verify the dialog appears with actual web content
+6. Ensure Microsoft Edge WebView2 Runtime is installed
 
-## WebView Implementation Note
+## WebView2 Implementation
 
-The current implementation uses a placeholder static control to simulate the WebView. For actual web browsing functionality, integrate Microsoft Edge WebView2:
+This DLL now uses **Microsoft Edge WebView2** for actual web browsing:
 
-1. Add WebView2 SDK via NuGet Package Manager
-2. Replace the static placeholder with WebView2 control
-3. Use WebView2 APIs to navigate and control the browser
+- Automatically initializes WebView2 environment
+- Displays real web content in the dialog
+- Supports navigation to any valid URL
+- Handles WebView2 cleanup on dialog close
+
+**Note:** The WebView2 Runtime must be installed on the target system. It's included by default on Windows 11 and can be downloaded for Windows 10.
 
 ## Known Limitations
 
-- WebView placeholder is a static text control (not actual browser)
+- Requires Microsoft Edge WebView2 Runtime to be installed
 - For full web browsing, WebView2 integration is needed
 - Requires MFC runtime DLLs on target machine
 

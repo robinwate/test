@@ -21,6 +21,11 @@ bld/
 [Ll]og/
 [Ll]ogs/
 
+# NuGet packages
+packages/
+*.nupkg
+*.snupkg
+
 # Visual C++ cache files
 ipch/
 *.aps

@@ -11,14 +11,17 @@ This guide will help you quickly get started with building and using the MFC Web
    Open MFCWebViewDLL.sln in Visual Studio 2022
    ```
 
-2. **Select configuration:**
+2. **Restore NuGet packages:**
+   - Right-click on the solution > Restore NuGet Packages
+
+3. **Select configuration:**
    - Configuration: Release
    - Platform: x64 (or Win32 for 32-bit)
 
-3. **Build:**
+4. **Build:**
    - Press `Ctrl+Shift+B` or select Build > Build Solution
 
-4. **Copy to distribution:**
+5. **Copy to distribution:**
    ```cmd
    PostBuild.bat x64 Release
    ```
@@ -39,18 +42,22 @@ Share the entire `Dist` folder which contains:
 
 1. **Copy the Dist folder** to your project directory
 
-2. **Configure includes:**
+2. **Ensure WebView2 Runtime is installed:**
+   - Included by default on Windows 11
+   - Download for Windows 10: https://developer.microsoft.com/microsoft-edge/webview2/
+
+3. **Configure includes:**
    - Project Properties > C/C++ > General > Additional Include Directories
    - Add: `$(ProjectDir)Dist\include`
 
-3. **Configure linker:**
+4. **Configure linker:**
    - Project Properties > Linker > General > Additional Library Directories
    - Add: `$(ProjectDir)Dist\lib\x64` (or x86)
    
    - Project Properties > Linker > Input > Additional Dependencies
    - Add: `MFCWebViewDLL.lib`
 
-4. **Copy DLL to output:**
+5. **Copy DLL to output:**
    - Copy `Dist\dll\x64\MFCWebViewDLL.dll` to your exe directory
 
 ### Step 2: Use in Your Code
@@ -83,6 +90,10 @@ A: Install MFC support in Visual Studio:
 
 A: Copy the DLL to your application's directory
 
+**Q: "Failed to create WebView2 environment"**
+
+A: Install Microsoft Edge WebView2 Runtime from https://developer.microsoft.com/microsoft-edge/webview2/
+
 **Q: Linker error LNK2019**
 
 A: Ensure MFCWebViewDLL.lib is in Additional Dependencies
@@ -99,15 +110,13 @@ A: Ensure MFCWebViewDLL.lib is in Additional Dependencies
 1. Build the DLL (see above)
 2. Create a test MFC application
 3. Integrate the DLL using the steps above
-4. Test by calling `ShowWebViewDialog()`
+4. Test by calling `ShowWebViewDialog()` - it will display actual web content!
 
-## WebView2 Integration (Optional)
+## WebView2 Runtime
 
-The current implementation uses a placeholder. To add actual web browsing:
-
-1. Add WebView2 SDK via NuGet
-2. Replace static control with WebView2 control
-3. See documentation for details
+This DLL uses Microsoft Edge WebView2 for actual web browsing:
+- **Windows 11**: Already included
+- **Windows 10**: Download from Microsoft's website
 
 ---
 
