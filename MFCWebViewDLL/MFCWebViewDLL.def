@@ -1,0 +1,9 @@
+; MFCWebViewDLL.def : Declares the module parameters for the DLL.
+
+LIBRARY      "MFCWebViewDLL"
+
+EXPORTS
+    ; Explicit exports can go here
+    ShowWebViewDialog
+    ShowWebViewDialogWithURL
+    GetDLLVersion
